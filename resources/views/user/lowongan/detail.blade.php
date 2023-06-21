@@ -1,7 +1,7 @@
 @extends('user.layout.main')
 
 @section('content')
-    <div class="heading" style="background: #E3E3E3; padding-top:10px; padding-bottom:10px">
+    {{-- <div class="heading" style="background: #E3E3E3; padding-top:10px; padding-bottom:10px"> --}}
         <div style="padding-left:60px">
             <h5>{{ $karir->karir }}</h5>
         </div>
@@ -9,6 +9,7 @@
             <a href="/lowongan" style="text-decoration: none;"> Lowongan </a> / Detail
         </div>
     </div>
+    <hr/>
     <div class="container">
         <div class="row">
             <div class="col">
@@ -16,7 +17,6 @@
                     <b> Tipe Pekerjaan </b>: {{ $karir->tipe }} <br>
                     <b> Lokasi Pekerjaan</b>: {{ $karir->lokasi }}
                 </p>
-                <hr />
                 <p class="text-start"><b>Keterangan</b><br>
                     {!! $karir->keterangan !!}
                 </p>

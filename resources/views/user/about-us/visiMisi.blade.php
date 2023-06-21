@@ -37,7 +37,7 @@
         <div class="row mw-10">
             @foreach ($misi as $m)
                 <div class="col" style="padding-bottom: 30px">
-                    <div class="card-body border border-dark" style="min-height: 327px; width:220px">
+                    <div class="card-body border border-dark" style="height: 327px; width:220px">
                         <div align="center">
                             <img src="{{ asset($m->gambar_path) }}" style="height: 327px; width: 170px">
                         </div>

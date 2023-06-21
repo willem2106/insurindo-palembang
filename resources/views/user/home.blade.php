@@ -14,7 +14,10 @@ Home
                     <h2><a href="/lowongan" class="text-blue" style="text-decoration: none"></h2>Lihat Selengkapnya</a>
                 @elseif ($item->judul == "Sejarah Insurindo")
                     <h2><a href="/about-us/sejarah" class="text-blue" style="text-decoration: none"></h2>Lihat Selengkapnya</a>
-                @else
+                @elseif ($item->judul == "Sejarah Insurindo")
+                    <h2><a href="/about-us/sejarah" class="text-blue" style="text-decoration: none"></h2>Lihat Selengkapnya</a>
+
+                    @else
                     <h2><a href="/about-us/visi-misi" class="text-blue" style="text-decoration: none"></h2>Lihat Selengkapnya</a>
                 @endif
             </div>

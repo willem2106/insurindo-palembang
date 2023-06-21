@@ -86,9 +86,9 @@
                                             <textarea name="konten" id="konten" class="form-control"></textarea>
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label for="gambar" class="form-label">Gambar</label> <br>
-                                            <input type="file" class="form-control-file" id="gambar"
-                                                name="gambar" accept="image/png, image/jpeg" />
+                                            <label for="media" class="form-label">Foto/Video</label> <br>
+                                            <input type="file" class="form-control-file" id="media"
+                                                name="media" accept="image/png, image/jpeg, video/mp4" />
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -98,6 +98,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- /MODAL TAMBAH -->
 
                     <!-- MODAL TAMBAH ORG-->
@@ -107,11 +108,13 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="tambahDataHeadOrg">Tambah Data</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close">
                                         <svg> ... </svg>
                                     </button>
                                 </div>
-                                <form action="{{ route('add tentang') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('add tentang') }}" method="post"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <input id="addOptionOrg" type="hidden" name="addOption">
                                     <div class="modal-body">
@@ -136,12 +139,14 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="tambahDataHeadVisi">Tambah Data</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                    <h5 class="modal-title" id="tambahDataHeadVisi">Tambah visi</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close">
                                         <svg> ... </svg>
                                     </button>
                                 </div>
-                                <form action="{{ route('add tentang') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('add tentang') }}" method="post"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <input id="addOptionVisi" type="hidden" name="addOption">
                                     <div class="modal-body">
@@ -171,19 +176,20 @@
                                         <svg> ... </svg>
                                     </button>
                                 </div>
-                                <form action="{{ route('edit tentang') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('edit tentang') }}" method="post"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <input id="editOption" type="hidden" name="editOption">
                                     <input id="editID" type="hidden" name="editID">
                                     <div class="modal-body">
                                         <div class="form-group mb-2">
                                             <label for="konten" class="form-label">Konten</label>
-                                            <textarea name="konten" id="konten" class="form-control"></textarea>
+                                            <textarea name="konten" id="kontenEdit" class="form-control"></textarea>
                                         </div>
                                         <div class="form-group mb-2">
                                             <label for="gambar" class="form-label">Gambar</label> <br>
                                             <input type="file" class="form-control-file" id="gambar"
-                                                name="gambar" accept="image/png, image/jpeg" />
+                                                name="gambar" accept="image/png, image/jpeg, video/mp4" />
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -207,7 +213,8 @@
                                         <svg> ... </svg>
                                     </button>
                                 </div>
-                                <form action="{{ route('edit tentang') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('edit tentang') }}" method="post"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <input id="editOptionOrg" type="hidden" name="editOption">
                                     <input id="editIDOrg" type="hidden" name="editID">
@@ -239,7 +246,8 @@
                                         <svg> ... </svg>
                                     </button>
                                 </div>
-                                <form action="{{ route('edit tentang') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('edit tentang') }}" method="post"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <input id="editOptionVisi" type="hidden" name="editOption">
                                     <input id="editIDVisi" type="hidden" name="editID">
@@ -292,8 +300,15 @@
                                                         <textarea disabled style="border: none; background-color: transparent;" cols="80" rows="7">{{ $s->konten }}</textarea>
                                                     </td>
                                                     <td class="text-center">
+                                                        @if (Str::contains($s->gambar_path, ['.png', '.jpg', '.jpeg']))
                                                             <img src="{{ asset($s->gambar_path) }}"
                                                                 style="border-radius: 10%; max-width: 150px;">
+                                                        @elseif (Str::contains($s->gambar_path, ['.mp4']))
+                                                            <video controls style="max-width: 150px;">
+                                                                <source src="{{ asset($s->gambar_path) }}"
+                                                                    type="video/mp4">
+                                                            </video>
+                                                        @endif
                                                     </td>
                                                     <td class="text-center">
                                                         <ul class="table-controls">
@@ -302,7 +317,7 @@
                                                                     href="javascript:void(0);" class="bs-tooltip"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     title="Edit" data-original-title="Edit"
-                                                                    onclick="editData('Ubah Sejarah', 1, {{ $s->id }})"><svg
+                                                                    onclick="editData('Ubah Sejarah', 1, {{ $s->id }}, '{{ $s->konten }}')"><svg
                                                                         xmlns="http://www.w3.org/2000/svg"
                                                                         width="24" height="24"
                                                                         viewBox="0 0 24 24" fill="none"
@@ -315,7 +330,8 @@
                                                                     </svg></a>
                                                             </li>
                                                             <li>
-                                                                <form style="display:inline" name="deleteData-1-{{ $s->id }}"
+                                                                <form style="display:inline"
+                                                                    name="deleteData-1-{{ $s->id }}"
                                                                     action="{{ route('delete tentang') }}"
                                                                     method="post">
                                                                     <a href="javascript:void(0);" class="bs-tooltip"
@@ -327,14 +343,14 @@
                                                                             stroke-linecap="round"
                                                                             stroke-linejoin="round"
                                                                             class="feather feather-trash p-1 br-8 mb-1">
-                                                                            <polyline points="3 6 5 6 21 6">
-                                                                            </polyline>
+                                                                            <polyline points="3 6 5 6 21 6"></polyline>
                                                                             <path
                                                                                 d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
                                                                             </path>
                                                                         </svg></a>
                                                                     @csrf
-                                                                    <input id="editOption" type="hidden" name="editOption" value="1">
+                                                                    <input id="editOption" type="hidden"
+                                                                        name="editOption" value="1">
                                                                     <input type="hidden" name="id"
                                                                         value="{{ $s->id }}">
                                                                 </form>
@@ -385,7 +401,8 @@
                                                     <td class="text-center">
                                                         <ul class="table-controls">
                                                             <li>
-                                                                <a data-bs-toggle="modal" data-bs-target="#ubahDataVisi"
+                                                                <a data-bs-toggle="modal"
+                                                                    data-bs-target="#ubahDataVisi"
                                                                     href="javascript:void(0);" class="bs-tooltip"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     title="Edit" data-original-title="Edit"
@@ -402,7 +419,8 @@
                                                                     </svg></a>
                                                             </li>
                                                             <li>
-                                                                <form style="display:inline" name="deleteData-21-{{ $s->id }}"
+                                                                <form style="display:inline"
+                                                                    name="deleteData-21-{{ $s->id }}"
                                                                     action="{{ route('delete tentang') }}"
                                                                     method="post">
                                                                     <a href="javascript:void(0);" class="bs-tooltip"
@@ -421,7 +439,8 @@
                                                                             </path>
                                                                         </svg></a>
                                                                     @csrf
-                                                                    <input id="editOption" type="hidden" name="editOption" value="21">
+                                                                    <input id="editOption" type="hidden"
+                                                                        name="editOption" value="21">
                                                                     <input type="hidden" name="id"
                                                                         value="{{ $s->id }}">
                                                                 </form>
@@ -471,8 +490,8 @@
                                                         <textarea disabled style="border: none; background-color: transparent;" cols="80" rows="3">{{ $s->konten }}</textarea>
                                                     </td>
                                                     <td class="text-center">
-                                                            <img src="{{ asset($s->gambar_path) }}"
-                                                                style="border-radius: 10%; max-width: 150px;">
+                                                        <img src="{{ asset($s->gambar_path) }}"
+                                                            style="border-radius: 10%; max-width: 150px;">
                                                     </td>
                                                     <td class="text-center">
                                                         <ul class="table-controls">
@@ -494,7 +513,8 @@
                                                                     </svg></a>
                                                             </li>
                                                             <li>
-                                                                <form style="display:inline" name="deleteData-22-{{ $s->id }}"
+                                                                <form style="display:inline"
+                                                                    name="deleteData-22-{{ $s->id }}"
                                                                     action="{{ route('delete tentang') }}"
                                                                     method="post">
                                                                     <a href="javascript:void(0);" class="bs-tooltip"
@@ -513,7 +533,8 @@
                                                                             </path>
                                                                         </svg></a>
                                                                     @csrf
-                                                                    <input id="editOption" type="hidden" name="editOption" value="22">
+                                                                    <input id="editOption" type="hidden"
+                                                                        name="editOption" value="22">
                                                                     <input type="hidden" name="id"
                                                                         value="{{ $s->id }}">
                                                                 </form>
@@ -558,13 +579,14 @@
                                             @foreach ($organisasi as $s)
                                                 <tr>
                                                     <td class="text-center">
-                                                            <img src="{{ asset($s->gambar_path) }}"
-                                                                style="border-radius: 10%; max-width: 150px;">
+                                                        <img src="{{ asset($s->gambar_path) }}"
+                                                            style="border-radius: 10%; max-width: 150px;">
                                                     </td>
                                                     <td class="text-center">
                                                         <ul class="table-controls">
                                                             <li>
-                                                                <a data-bs-toggle="modal" data-bs-target="#ubahDataOrg"
+                                                                <a data-bs-toggle="modal"
+                                                                    data-bs-target="#ubahDataOrg"
                                                                     href="javascript:void(0);" class="bs-tooltip"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     title="Edit" data-original-title="Edit"
@@ -581,7 +603,8 @@
                                                                     </svg></a>
                                                             </li>
                                                             <li>
-                                                                <form style="display:inline" name="deleteData-3-{{ $s->id }}"
+                                                                <form style="display:inline"
+                                                                    name="deleteData-3-{{ $s->id }}"
                                                                     action="{{ route('delete tentang') }}"
                                                                     method="post">
                                                                     <a href="javascript:void(0);" class="bs-tooltip"
@@ -600,7 +623,8 @@
                                                                             </path>
                                                                         </svg></a>
                                                                     @csrf
-                                                                    <input id="editOption" type="hidden" name="editOption" value="3">
+                                                                    <input id="editOption" type="hidden"
+                                                                        name="editOption" value="3">
                                                                     <input type="hidden" name="id"
                                                                         value="{{ $s->id }}">
                                                                 </form>
@@ -711,9 +735,11 @@
             document.getElementById("addOption").value = id;
         }
 
-        function editData(name, opt, id) {
+        function editData(name, opt, id, konten) {
+            console.log(konten, id);
             document.getElementById("ubahDataHead").textContent = name;
             document.getElementById("editOption").value = opt;
+            document.getElementById("kontenEdit").textContent = konten;
             document.getElementById("editID").value = id;
         }
 

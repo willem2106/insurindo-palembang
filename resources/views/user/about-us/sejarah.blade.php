@@ -6,8 +6,8 @@
     <div class="col text-center">
         <h2 class="text-center pt-4"><b>Sejarah Insurindo Palembang </b></h2>
     </div>
-        <h4 class="text-center pt-5"> Ketahui lebih banyak mengenai <strong class="cBlue">"Insurindo Palembang"</strong> </h4>
-    
+    <h4 class="text-center pt-5"> Ketahui lebih banyak mengenai <strong class="cBlue">"Insurindo Palembang"</strong> </h4>
+
     <br>
     <div class="container">
         {{-- <div class="row">
@@ -25,12 +25,21 @@
                     </div>
                 </div>
             </div> --}}
+
         @foreach ($sejarah as $s)
-            <p class="text-center"> {{ $s->konten }}</p>
-            <div class="col">
-                <img src="{{ asset($s->gambar_path) }}" width="1300" height="400" alt="">
+            <p class="text-center">{{ $s->konten }}</p>
+            <div class="col text-center">
+                @if (Str::contains($s->gambar_path, ['.png', '.jpg', '.jpeg']))
+                    <img src="{{ asset($s->gambar_path) }}" width="1300" height="400" alt="">
+                @elseif (Str::contains($s->gambar_path, ['.mp4']))
+                    <video width="50%" height="auto" controls>
+                        <source src="{{ asset($s->gambar_path) }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                @endif
             </div>
             <br>
         @endforeach
+
     </div>
 @endsection

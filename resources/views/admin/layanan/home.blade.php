@@ -81,20 +81,13 @@
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group mb-2">
-                                            <label for="karir" class="form-label">Lowongan</label>
-                                            <input type="text" id="karir" class="form-control" name="karir">
+                                            <label for="jenis" class="form-label">Jenis Layanan</label>
+                                            <input type="text" id="jenis" class="form-control" name="jenis">
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label for="kategori" class="form-label">Kategori</label>
-                                            <input type="text" id="kategori" class="form-control" name="kategori">
-                                        </div>
-                                        <div class="form-group mb-2">
-                                            <label for="tipe" class="form-label">Tipe</label>
-                                            <input type="text" id="tipe" class="form-control" name="tipe">
-                                        </div>
-                                        <div class="form-group mb-2">
-                                            <label for="lokasi" class="form-label">Lokasi</label>
-                                            <input type="text" id="lokasi" class="form-control" name="lokasi">
+                                            <label for="gambar" class="form-label">Gambar</label> <br>
+                                            <input type="file" class="form-control-file" id="gambar"
+                                                name="gambar" accept="image/png, image/jpeg" />
                                         </div>
                                     </div>
                                     <div class="modal-footer">

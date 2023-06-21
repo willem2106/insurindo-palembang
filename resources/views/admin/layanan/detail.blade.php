@@ -128,6 +128,8 @@
                                         </div>
                                         <div class="form-group mb-2">
                                             <label for="konten" class="form-label">Konten</label>
+                                            {{-- <input type="text" id="kontenDetail" class="form-control"
+                                                name="konten"> --}}
                                             <textarea name="konten" id="konten" class="form-control"></textarea>
                                         </div>
                                         <div class="form-group mb-2">
@@ -270,6 +272,7 @@
         function editData(id, judul) {
             document.getElementById("idDetail").value = id;
             document.getElementById("judulDetail").value = judul;
+            // document.getElementById("kontenDetail").value = konten;
         }
 
         function deleteData(id) {

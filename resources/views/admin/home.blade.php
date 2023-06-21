@@ -86,7 +86,7 @@
                                         <div class="form-group mb-2">
                                             <label for="gambar" class="form-label">Gambar</label> <br>
                                             <input type="file" class="form-control-file" id="gambar"
-                                                name="gambar" accept="image/png, image/jpeg" />
+                                                name="gambar" accept="image/png, image/jpeg , video/mp4"/>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -122,7 +122,7 @@
                                         <div class="form-group mb-2">
                                             <label for="gambar" class="form-label">Gambar</label> <br>
                                             <input type="file" class="form-control-file" id="gambar"
-                                                name="gambar" accept="image/png, image/jpeg" />
+                                                name="gambar" accept="image/png, image/jpeg, video/mp4" />
                                         </div>
                                     </div>
                                     <div class="modal-footer">

@@ -119,7 +119,8 @@
                                     <div class="modal-body">
                                         <div class="form-group mb-2">
                                             <label for="keterangan" class="form-label">Keterangan</label>
-                                            <textarea name="keterangan" id="keterangan" class="form-control"></textarea>
+                                            <input type="text" name="keterangan" id="keterangan"
+                                                class="form-control">
                                         </div>
                                         <div class="form-group mb-2">
                                             <label for="gambar" class="form-label">Gambar</label> <br>
@@ -259,8 +260,8 @@
                                         <tbody>
                                             @foreach ($pusat as $p)
                                                 <tr>
-                                                    <td>
-                                                        <textarea disabled style="border: none; background-color: transparent;" cols="80" rows="7">{{ $p->keterangan }}</textarea>
+                                                    <td class="text-center">
+                                                        {{ $p->keterangan }}
                                                     </td>
                                                     <td class="text-center">
                                                         <img src="{{ asset($p->gambar_path) }}"
@@ -274,7 +275,7 @@
                                                                     href="javascript:void(0);" class="bs-tooltip"
                                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                                     title="Edit" data-original-title="Edit"
-                                                                    onclick="editDataPusat(1, {{ $p->id }})"><svg
+                                                                    onclick="editDataPusat('Ubah Data Pusat', 1, '{{ $p->id }}', '{{ $p->keterangan }}')"><svg
                                                                         xmlns="http://www.w3.org/2000/svg"
                                                                         width="24" height="24"
                                                                         viewBox="0 0 24 24" fill="none"
@@ -287,7 +288,8 @@
                                                                     </svg></a>
                                                             </li>
                                                             <li>
-                                                                <form style="display:inline" name="deleteData-1-{{ $p->id }}"
+                                                                <form style="display:inline"
+                                                                    name="deleteData-1-{{ $p->id }}"
                                                                     action="{{ route('delete unit') }}"
                                                                     method="post">
                                                                     <a href="javascript:void(0);" class="bs-tooltip"
@@ -387,7 +389,8 @@
                                                                     </svg></a>
                                                             </li>
                                                             <li>
-                                                                <form style="display:inline" name="deleteData-2-{{ $p->id }}"
+                                                                <form style="display:inline"
+                                                                    name="deleteData-2-{{ $p->id }}"
                                                                     action="{{ route('delete unit') }}"
                                                                     method="post">
                                                                     <a href="javascript:void(0);" class="bs-tooltip"
@@ -488,7 +491,8 @@
                                                                     </svg></a>
                                                             </li>
                                                             <li>
-                                                                <form style="display:inline" name="deleteData-3-{{ $p->id }}"
+                                                                <form style="display:inline"
+                                                                    name="deleteData-3-{{ $p->id }}"
                                                                     action="{{ route('delete unit') }}"
                                                                     method="post">
                                                                     <a href="javascript:void(0);" class="bs-tooltip"
@@ -557,6 +561,9 @@
                                             @foreach ($kalibrasi as $p)
                                                 <tr>
                                                     <td class="text-center">
+                                                        {{ $p->keterangan }}
+                                                    </td>
+                                                    <td class="text-center">
                                                         {{ $p->nama }}
                                                     </td>
                                                     <td class="text-center">
@@ -588,7 +595,8 @@
                                                                     </svg></a>
                                                             </li>
                                                             <li>
-                                                                <form style="display:inline" name="deleteData-4-{{ $p->id }}"
+                                                                <form style="display:inline"
+                                                                    name="deleteData-4-{{ $p->id }}"
                                                                     action="{{ route('delete unit') }}"
                                                                     method="post">
                                                                     <a href="javascript:void(0);" class="bs-tooltip"
@@ -714,14 +722,14 @@
             "pageLength": 10
         });
 
-        function addDataPusat(name, id) {
-            document.getElementById("tambahDataHeadPusat").textContent = name;
+        function addDataPusat(keterangan, id) {
+            document.getElementById("tambahDataHeadPusat").value = keterangan;
             document.getElementById("addOptionPusat").value = id;
         }
 
-        function editDataPusat(opt, id) {
-            document.getElementById("editOptionPusat").value = opt;
-            document.getElementById("editIDPusat").value = id;
+        function editDataPusat(keterangan, id) {
+            document.getElementById("editOptionPusat").value = id;
+            document.getElementById("ubahDataHeadPusat").value = keterangan;
         }
 
         function addData(name, id) {
@@ -739,6 +747,11 @@
             document.getElementById("mailKantor").value = email;
         }
 
+
+        function editUnit(id, keterangan) {
+            document.getElementById("idUnit").value = id;
+            document.getElementById("keteranganEdit").value = keterangan;
+        }
 
         function deleteData(name, opt, id) {
             event.preventDefault(); // prevent form submit
